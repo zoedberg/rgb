@@ -170,7 +170,7 @@ pub trait RgbExt {
     fn rgb_bundles(&self) -> Result<BTreeMap<ContractId, BundleDichotomy>, RgbPsbtError> {
         let mut map = BTreeMap::new();
         for contract_id in self.rgb_contract_ids()? {
-            let mut input_map = HashMap::<CloseMethod, SmallOrdMap<Vin, OpId>>::new();
+            let mut input_map = BTreeMap::<CloseMethod, SmallOrdMap<Vin, OpId>>::new();
             let mut known_transitions =
                 HashMap::<CloseMethod, SmallOrdMap<OpId, Transition>>::new();
             for (opid, vin) in self.rgb_contract_consumers(contract_id)? {
